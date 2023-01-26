@@ -42,6 +42,12 @@ function getWeather(city) {
         console.log(queryURL);
         // Log the resulting object
         console.log(response);
+        // Transfer content to HTML
+        $("#today").html("<h2>" + response.name + " (" + new Date().toLocaleDateString() + ") " + "<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png'>" + "</h2>");
+    $("#today").append("<p>Temperature: " + (response.main.temp - 273.15).toFixed(2) + " &#8451;</p>");
+    $("#today").append("<p>Humidity: " + response.main.humidity + "%</p>");
+    $("#today").append("<p>Wind Speed: " + response.wind.speed + " m/s</p>");
+    
     });
 };
 
@@ -68,6 +74,8 @@ function createCityButtons(city) {
 
 
 
+
+
 // // When the user submits a search (by clicking the search button):
 // Store the user's input in a variable
 $("#search-button").on("click", function(event) {
@@ -83,4 +91,7 @@ $("#search-button").on("click", function(event) {
     localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
    
 });
+
+
+
 
