@@ -27,6 +27,45 @@ apiKey = "9ae8216bea4ff853455ec69cc8c92110";
 var city = "";
 var cityHistory = [];
 
+// Function to retrieve current and future weather conditions for the entered city using an API
+function getWeather(city) {
+    // Constructing a queryURL using the city name
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+    // Performing an AJAX request with the queryURL
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    // After data comes back from the request
+    .then(function(response) {
+        // Log the queryURL
+        console.log(queryURL);
+        // Log the resulting object
+        console.log(response);
+    });
+};
+
+// Function to create a button in the search area for city history
+function createCityButtons() {
+    // Clear the city buttons
+    $("#city-buttons").empty();
+    // Loop through the cityHistory array   
+    for (var i = 0; i < cityHistory.length; i++) {
+        // Create a button for each city in the array
+        var cityButton = $("<button>");
+// Add a class to the button
+cityButton.addClass("city-button btn btn-secondary");
+// Add the city name as text to the button
+cityButton.text(cityHistory[i]);
+// Append the button to the #city-buttons div
+$("#city-buttons").append(cityButton);
+}
+};
+
+
+
+
+
 
 // // When the user submits a search (by clicking the search button):
 // Store the user's input in a variable
