@@ -65,6 +65,8 @@ function getWeather(lat, lon) {
         // Log the resulting object
         console.log(response);
         // Transfer content to HTML
+        // clear the #today div
+        $("#today").empty();
       // append the city name and date to the #today div
         $("#today").append("<h2>" + response.city.name + " (" + currentDay + ")</h2>");
         // append the icon to the #today div
