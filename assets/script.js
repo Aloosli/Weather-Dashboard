@@ -26,11 +26,33 @@
 apiKey = "9ae8216bea4ff853455ec69cc8c92110";
 var city = "";
 var cityHistory = [];
+var currentDay = moment().format('M/DD/YYYY');
 
-// Function to retrieve current and future weather conditions for the entered city using an API
-function getWeather(city) {
+// // Create 5 forecast divs and append them to the forecast-container div
+// for (var i = 0; i < 5; i++) {
+//     var forecastDiv = $("<div>").addClass("forecast");
+//     $("#forecast-container").append(forecastDiv);
+//   }
+// get coordinates
+  function getCoordinates(city) {
+    var geolocationURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + apiKey;
+    $.ajax({
+        url: geolocationURL,
+        method: "GET"
+        
+    }).then(function(response){
+        
+        var lat = response[0].lat;
+        var lon = response[0].lon;
+        getWeather(lat, lon);
+        console.log(response);
+        
+    });
+
+    // Function to retrieve current and future weather conditions for the entered city using an API
+function getWeather(lat, lon) {
     // Constructing a queryURL using the city name
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=" + apiKey;
     // Performing an AJAX request with the queryURL
     $.ajax({
         url: queryURL,
@@ -43,13 +65,27 @@ function getWeather(city) {
         // Log the resulting object
         console.log(response);
         // Transfer content to HTML
-        $("#today").html("<h2>" + response.name + " (" + new Date().toLocaleDateString() + ") " + "<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png'>" + "</h2>");
-    $("#today").append("<p>Temperature: " + (response.main.temp - 273.15).toFixed(2) + " &#8451;</p>");
-    $("#today").append("<p>Humidity: " + response.main.humidity + "%</p>");
-    $("#today").append("<p>Wind Speed: " + response.wind.speed + " m/s</p>");
+      // append the city name and date to the #today div
+        $("#today").append("<h2>" + response.city.name + " (" + currentDay + ")</h2>");
+        // append the icon to the #today div
+        $("#today").append("<img src='https://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png'>");
+        // append the temperature to the #today div
+        $("#today").append("<p>Temperature: " + response.list[0].main.temp + " °F</p>");
+        // append the humidity to the #today div
+        $("#today").append("<p>Humidity: " + response.list[0].main.humidity + "%</p>");
+        // append the wind speed to the #today div
+        $("#today").append("<p>Wind Speed: " + response.list[0].wind.speed + " MPH</p>");
+
     
     });
-};
+      
+    };
+
+    
+
+}
+
+  
 
 // Function to create a button in the search area for city history
 function createCityButtons(city) {
@@ -60,7 +96,7 @@ function createCityButtons(city) {
         // create a button for the new city
         var cityButton = $("<button>");
         // add a class to the button
-        cityButton.addClass("city-button city-button btn btn-secondary mb-2");
+        cityButton.addClass("city-button  btn btn-secondary mb-2");
         // add the city name to the button
         cityButton.text(city);
         // append the button to the city-history div
@@ -83,7 +119,7 @@ $("#search-button").on("click", function(event) {
     city = $("#search-input").val();
     console.log(city);
     // Retrieve current and future weather conditions for the entered city using an API
-    getWeather(city);
+    getCoordinates(city);
     
      // call
      createCityButtons(city);
@@ -92,6 +128,18 @@ $("#search-button").on("click", function(event) {
    
 });
 
+// event listener for city buttons
+$(document).on("click", ".city-button", function() {
+    // Get the city name from the button text
+    city = $(this).text();
+    if (city){
+    // Retrieve current and future weather conditions for the entered city using an API
+    getCoordinates(city);
+    }
+});
 
 
 
+
+
+  
