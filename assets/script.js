@@ -46,19 +46,19 @@ function getWeather(city) {
 };
 
 // Function to create a button in the search area for city history
-function createCityButtons(newCity) {
+function createCityButtons(city) {
   // check if new city is already in the cityHistory array
-    if (cityHistory.indexOf(newCity) === -1) {
+    if (cityHistory.indexOf(city) === -1) {
         // if not, add it to the array
-        cityHistory.push(newCity);
+        cityHistory.push(city);
         // create a button for the new city
         var cityButton = $("<button>");
         // add a class to the button
-        cityButton.addClass("city-button city-button btn btn-secondary");
+        cityButton.addClass("city-button city-button btn btn-secondary mb-2");
         // add the city name to the button
-        cityButton.text(newCity);
+        cityButton.text(city);
         // append the button to the city-history div
-        $("#history").append(cityButton);
+        $(".city-buttons").append(cityButton);
     }
 };
 
@@ -76,10 +76,11 @@ $("#search-button").on("click", function(event) {
     console.log(city);
     // Retrieve current and future weather conditions for the entered city using an API
     getWeather(city);
-    // Save the city name in the browser's local storage
-    cityHistory.push(city);
+    
+     // call
+     createCityButtons(city);
+     // Save the city name in the browser's local storage
     localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
-    // Create a button in the search area for city history
-    createCityButtons();
+   
 });
 
