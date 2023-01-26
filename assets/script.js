@@ -1,3 +1,4 @@
+// Pseudocode:
 // When the user submits a search (by clicking the search button):
 // Store the user's input in a variable
 // Retrieve current and future weather conditions for the entered city using an API
@@ -19,3 +20,26 @@
 
 // Using data stored in local storage, create a button in the search area for city history
 // When clicked, this button should display the current and future weather conditions for the previously searched city.
+// end pseudocode
+
+// Global variables
+apiKey = "9ae8216bea4ff853455ec69cc8c92110";
+var city = "";
+var cityHistory = [];
+
+
+// // When the user submits a search (by clicking the search button):
+// Store the user's input in a variable
+$("#search-button").on("click", function(event) {
+    event.preventDefault();
+    city = $("#search-input").val();
+    console.log(city);
+    // Retrieve current and future weather conditions for the entered city using an API
+    getWeather(city);
+    // Save the city name in the browser's local storage
+    cityHistory.push(city);
+    localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+    // Create a button in the search area for city history
+    createCityButtons();
+});
+
