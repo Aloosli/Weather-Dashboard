@@ -46,21 +46,22 @@ function getWeather(city) {
 };
 
 // Function to create a button in the search area for city history
-function createCityButtons() {
-    // Clear the city buttons
-    $("#city-buttons").empty();
-    // Loop through the cityHistory array   
-    for (var i = 0; i < cityHistory.length; i++) {
-        // Create a button for each city in the array
+function createCityButtons(newCity) {
+  // check if new city is already in the cityHistory array
+    if (cityHistory.indexOf(newCity) === -1) {
+        // if not, add it to the array
+        cityHistory.push(newCity);
+        // create a button for the new city
         var cityButton = $("<button>");
-// Add a class to the button
-cityButton.addClass("city-button btn btn-secondary");
-// Add the city name as text to the button
-cityButton.text(cityHistory[i]);
-// Append the button to the #city-buttons div
-$("#city-buttons").append(cityButton);
-}
+        // add a class to the button
+        cityButton.addClass("city-button city-button btn btn-secondary");
+        // add the city name to the button
+        cityButton.text(newCity);
+        // append the button to the city-history div
+        $("#history").append(cityButton);
+    }
 };
+
 
 
 
