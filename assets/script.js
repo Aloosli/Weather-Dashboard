@@ -26,13 +26,9 @@
 apiKey = "9ae8216bea4ff853455ec69cc8c92110";
 var city = "";
 var cityHistory = [];
-var currentDay = moment().format('M/DD/YYYY');
+var currentDay = moment().format('Do MMM YYYY');
 
-// // Create 5 forecast divs and append them to the forecast-container div
-// for (var i = 0; i < 5; i++) {
-//     var forecastDiv = $("<div>").addClass("forecast");
-//     $("#forecast-container").append(forecastDiv);
-//   }
+
 // get coordinates
   function getCoordinates(city) {
     var geolocationURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + apiKey;
@@ -68,15 +64,36 @@ function getWeather(lat, lon) {
         // clear the #today div
         $("#today").empty();
       // append the city name and date to the #today div
-        $("#today").append("<h2>" + response.city.name + " (" + currentDay + ")</h2>");
+        $("#today").append("<h2>" + city + " (" + currentDay + ")</h2>");
         // append the icon to the #today div
         $("#today").append("<img src='https://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png'>");
-        // append the temperature to the #today div
-        $("#today").append("<p>Temperature: " + response.list[0].main.temp + " °F</p>");
+        // append the temperature to the #today div in celcius
+        $("#today").append("<p>Temperature: " + Math.round(response.list[0].main.temp - 273.15) + " °C</p>");
+
+
+        
         // append the humidity to the #today div
         $("#today").append("<p>Humidity: " + response.list[0].main.humidity + "%</p>");
         // append the wind speed to the #today div
         $("#today").append("<p>Wind Speed: " + response.list[0].wind.speed + " MPH</p>");
+
+        // // Create 5 forecast cards and append them to <section id="forecast-container"
+        // clear the #forecast-container div
+        $("#forecast-container").empty();
+        for (var i = 0; i < 5; i++) {
+            var forecastCard = $("<div>");
+            forecastCard.addClass("card bg-primary text-white m-2 text-center");
+            forecastCard.html(`
+                <img class="card-img-top mx-auto" src="https://openweathermap.org/img/w/${response.list[i].weather[0].icon}.png">
+                <div class="card-body ">
+                    <h5 class="card-title">${moment().add(i+1, 'days').format('Do MMM YYYY')}</h5>
+                    <p class="card-text">Temperature: ${Math.round(response.list[i].main.temp - 273.15)} °C</p>
+                    <p class="card-text">Humidity: ${response.list[i].main.humidity}%</p>
+                </div>
+            `);
+            $("#forecast-container").append(forecastCard);
+        }
+        
 
     
     });
@@ -86,6 +103,10 @@ function getWeather(lat, lon) {
     
 
 }
+
+
+
+
 
   
 
