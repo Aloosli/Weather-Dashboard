@@ -1,26 +1,64 @@
 
 header {
-    background: linear-gradient(to right, #f9844a, #43aa8b);
+    background: linear-gradient(to right, #f9844a, #90be6d);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     
 }
-#search-button {
-
-    background-color: #43aa8b;
-    color: white;
-    width: 100%!important;
-    
-    
+.weather-h1 {
+    font-family: 'Fugaz One', cursive;
+    font-size: 80px;
 }
-
-
-/* horizontal rule styling  */
-.hr {
-    height: 5px;
-    width: 100%;
-    border-radius: 25px;
+.h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#today {
+    margin-top: 40px;
+}
+/* search button styling */
+.searchButton {
+    background: linear-gradient(135deg, #6FB9BE 30%, #BE6F91 60%);
+    border: none;
+    height: 40px;
+    margin-top: 30px;
     
     background-color: #90be6d;
-  }
+    color: white;
+    width: 100%;
+    border-radius: 100px;
+    transition: all 0.15s;
+   
+}
+.searchButton:hover {
+    
+   
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.searchButton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.city-button {
+    border: none;
+    background-color: #90be6d;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+    border-radius: 100px;
+    transition: all 0.15s;
+}
+.city-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.city-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
   
 /* card styling */
 .card-img-top {
@@ -29,4 +67,5 @@ header {
 }
 .card {
     background-color: #90be6d!important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }

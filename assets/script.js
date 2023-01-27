@@ -37,6 +37,12 @@ function getCoordinates(city) {
   $.ajax({
     url: geolocationURL,
     method: "GET",
+
+    // error callback function
+    error: function (jqXHR, textStatus, errorThrown) {
+      // show error message to user
+      alert("Error: " + textStatus + " " + errorThrown);
+    },
   }).then(function (response) {
     var lat = response[0].lat;
     var lon = response[0].lon;
@@ -58,6 +64,11 @@ function getCoordinates(city) {
     $.ajax({
       url: queryURL,
       method: "GET",
+       // error callback function
+    error: function (jqXHR, textStatus, errorThrown) {
+        // show error message to user
+        alert("Error: " + textStatus + " " + errorThrown);
+      },
     })
       // After data comes back from the request
       .then(function (response) {
@@ -91,13 +102,13 @@ function getCoordinates(city) {
         $("#today").append(
           "<p>Wind Speed: " + response.list[0].wind.speed + " MPH</p>"
         );
- 
+
         // Create 5 forecast cards and append them to <section id="forecast-container"
         // clear the #forecast-container div
         $("#forecast-container").empty();
         for (var i = 0; i < 5; i++) {
           var forecastCard = $("<div>");
-          forecastCard.addClass("card  text-white m-2 text-center");
+          forecastCard.addClass("card mx-auto text-white m-2 text-center");
           forecastCard.html(`
                 <img class="card-img-top mx-auto" src="https://openweathermap.org/img/w/${
                   response.list[i].weather[0].icon
@@ -129,7 +140,7 @@ function createCityButtons(city) {
     // create a button for the new city
     var cityButton = $("<button>");
     // add a class to the button
-    cityButton.addClass("city-button  btn btn-secondary mb-2");
+    cityButton.addClass("city-button ");
     // add the city name to the button
     cityButton.text(city);
     // append the button to the city-history div
@@ -138,20 +149,25 @@ function createCityButtons(city) {
 }
 // function to capitalize the first letter of city names
 function capitalizeWords(inputString) {
-    // Convert the input string to lowercase and split it into an array of words
-    var words = inputString.toLowerCase().split(' ');
-    // Loop through the array of words
-    for (var j = 0; j < words.length; j++) {
-        // Capitalize the first letter of each word
-        words[j] = words[j].charAt(0).toUpperCase() + words[j].slice(1);
-    }
-    // Join the array of capitalized words back into a single string and return it
-    return words.join(' ');
+  // Convert the input string to lowercase and split it into an array of words
+  var words = inputString.toLowerCase().split(" ");
+  // Loop through the array of words
+  for (var i = 0; i < words.length; i++) {
+    // Capitalize the first letter of each word
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+  }
+  // Join the array of capitalized words back into a single string and return it
+  return words.join(" ");
 }
 // Store the user's input in a variable
 $("#search-button").on("click", function (event) {
   event.preventDefault();
-  city = $("#search-input").val();
+  city = capitalizeWords($("#search-input").val());
+  // check if there is any input
+  if (!city) {
+    alert("Please enter a city name");
+    return;
+  }
   console.log(city);
   // Retrieve current and future weather conditions for the entered city using an API
   getCoordinates(city);
