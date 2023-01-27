@@ -1,10 +1,32 @@
+
 header {
-    background: linear-gradient(to right, #00b09b, #96c93d);
-};
-.border {
-    border: solid, 1px, black;
+    background: linear-gradient(to right, #f9844a, #43aa8b);
+    
 }
+#search-button {
+
+    background-color: #43aa8b;
+    color: white;
+    width: 100%!important;
+    
+    
+}
+
+
+/* horizontal rule styling  */
+.hr {
+    height: 5px;
+    width: 100%;
+    border-radius: 25px;
+    
+    background-color: #90be6d;
+  }
+  
+/* card styling */
 .card-img-top {
     max-width: 80px;
     max-height: 80px;
+}
+.card {
+    background-color: #90be6d!important;
 }

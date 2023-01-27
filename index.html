@@ -1,57 +1,84 @@
 <!DOCTYPE html>
 <html lang="en-gb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Weather Dashboard</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" /> 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> 
-  <title>Weather Dashboard</title>
-</head>
+  <body>
+    <header
+      class="container-fluid text-center text-white bg-dark p-2 mb-4 weather-header"
+    >
+      <h1>Weather Dashboard</h1>
+    </header>
 
-<body>
-  <header class="container-fluid text-center text-white bg-dark p-2 mb-4 weather-header">
-    <h1>Weather Dashboard</h1>
-  </header>
-
-  <!-- max-width for ultra wide resolutions -->
-  <div class="container-fluid" style="max-width: 1400px">
-    <div class="row">
-      <aside class="col-lg-3 pb-3">
-        <h2 id="form-heading" class="mt-1 h3 form-label">
-          Search for a City:
-        </h2>
-        <form id="search-form" class="form">
-          <div class="form-inline form-group">
-            <div class="input-group">
-              <input class="form-input weather-search" type="text" id="search-input" placeholder="London"
-                aria-labelledby="form-heading" aria-controls="today forecast" />
-              <div class="input-group-append">
-                <button type="submit" class="btn search-button btn-primary m-2" id="search-button" aria-label="submit search">
-                  Search
-                </button>
-                <hr class="hr weather-hr" />
+    <!-- max-width for ultra wide resolutions -->
+    <div class="container-fluid" style="max-width: 1400px">
+      <div class="row">
+        <aside class="col-lg-3 pb-3">
+          <h2 id="form-heading" class="mt-1 h3 form-label">
+            Search for a City:
+          </h2>
+          <form id="search-form" class="form">
+            <div class="form-inline form-group">
+              <div class="input-group ">
+                <input
+                  class="form-input weather-search "
+                  type="text"
+                  id="search-input"
+                  placeholder="London"
+                  aria-labelledby="form-heading"
+                  aria-controls="today forecast"
+                />
+               
+                <button
+                type="submit"
+                class="btn  btn-block mt-4 mb-4"
+                id="search-button"
+                aria-label="submit search"
+              >
+                Search
+              </button>
               </div>
             </div>
-          </div>
-        </form>
-        <div class="city-buttons d-flex flex-column " id="history"></div>
-      </aside>
+          </form>
+          <!-- horizontal rule -->
+          <hr class="hr"/>
+          <div class="city-buttons d-flex flex-column" id="history"></div>
+        </aside>
 
-      <div class="col-lg-9 pb-3 text-center">
-        <section id="today" class="mt-3 border mx-auto" role="region" aria-live="polite"></section>
-        <section id="forecast-container" class="row mt-3 mx-auto" role="region" aria-live="polite"></section>
+        <div class="col-lg-9 pb-3 text-center">
+          <section
+            id="today"
+            class="mt-3 border mx-auto"
+            role="region"
+            aria-live="polite"
+          ></section>
+          <section
+            id="forecast-container"
+            class="row mt-3 mx-auto"
+            role="region"
+            aria-live="polite"
+          ></section>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Moment.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="./assets/script.js"></script>
-</body>
-
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
