@@ -173,3 +173,16 @@ $(document).on("click", ".city-button", function () {
     getCoordinates(city);
   }
 });
+// Clear the search input field and add a placeholder
+function clearSearch(){
+  const storedValue = localStorage.getItem('cityHistory');
+  if(storedValue) {
+    // If a value is found, clear it
+    localStorage.removeItem('cityHistory');
+    $('#search-input').val('');
+    $('#search-input').attr("placeholder", "search a city");
+  }
+}
+
+$(document).ready(clearSearch);
+
