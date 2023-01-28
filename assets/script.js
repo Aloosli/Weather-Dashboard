@@ -32,7 +32,7 @@ function getCoordinates(city) {
   var geolocationURL =
     "https://api.openweathermap.org/geo/1.0/direct?q=" +
     city +
-    "&limit=1&appid=" +
+    "&limit=1&type=like&appid=" +
     apiKey;
   $.ajax({
     url: geolocationURL,

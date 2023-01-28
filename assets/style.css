@@ -1,4 +1,6 @@
-
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
 header {
     background: linear-gradient(to right, #f9844a, #90be6d);
     box-shadow: 0 3px 8px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -9,12 +11,27 @@ header {
     font-size: 80px;
 }
 .h3 {
+    
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 #today {
     margin-top: 40px;
 }
+
+/* search bar styling */
+input[type=text] {
+    background-color: #fff;
+    border: 5px dotted #f9844a;
+    margin-top: 20px;
+    font-size: 30px;
+    height: 60px;
+    color: #90be6d;
+    padding-left: 80px;
+    width: 100%;
+    border-radius: 100px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.09);
+  }
 /* search button styling */
 .searchButton {
     background: linear-gradient(135deg, #6FB9BE 30%, #BE6F91 60%);
