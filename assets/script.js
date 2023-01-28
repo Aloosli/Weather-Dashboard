@@ -38,16 +38,16 @@ function getCoordinates(city) {
     url: geolocationURL,
     method: "GET",
 
-    // error callback function
-    error: function (jqXHR, textStatus, errorThrown) {
-      // show error message to user
-      alert("Error: " + textStatus + " " + errorThrown);
-    },
+   
   }).then(function (response) {
+     if (response.length !== 0) {
     var lat = response[0].lat;
     var lon = response[0].lon;
     getWeather(lat, lon);
     console.log(response);
+     } else {
+      alert("Please enter a valid city name");
+     }
   });
 
   // Function to retrieve current and future weather conditions for the entered city using an API
