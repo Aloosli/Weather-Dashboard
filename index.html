@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Sono:wght@500&display=swap"
       rel="stylesheet"
     />
     <title>Weather Dashboard</title>
@@ -24,7 +24,7 @@
 
   <body>
     <header
-      class="container-fluid text-center text-white  p-4 mb-4 weather-header"
+      class="container-fluid text-center text-white p-4 mb-4 weather-header"
     >
       <h1 class="weather-h1">Weather Dashboard</h1>
     </header>
@@ -33,12 +33,11 @@
     <div class="container-fluid" style="max-width: 1400px">
       <div class="row">
         <aside class="col-lg-3 pb-3">
-         
           <form id="search-form" class="form">
-            <div class=" form-group">
+            <div class="form-group">
               <div class="input-group">
                 <input
-                  class=" weather-search"
+                  class="weather-search"
                   type="text"
                   id="search-input"
                   placeholder="search a city"
@@ -57,20 +56,20 @@
               </div>
             </div>
           </form>
-        
+
           <div class="city-buttons d-flex flex-column" id="history"></div>
         </aside>
 
-        <div class="col-lg-9 pb-3 text-center   ">
+        <div class="col-lg-9 pb-3 text-center">
           <section
             id="today"
-            class=" mt-3  mx-auto"
+            class="mt-3 mx-auto"
             role="region"
             aria-live="polite"
           ></section>
           <section
             id="forecast-container"
-            class=" row mt-3  "
+            class="row mt-3"
             role="region"
             aria-live="polite"
           ></section>

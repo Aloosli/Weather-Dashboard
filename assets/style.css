@@ -22,7 +22,7 @@ header {
     font-family: 'Fugaz One', cursive;
     font-size: 65px;
     
-    color: rgba(70, 99, 101, 0.4)
+    color: rgba(70, 99, 101, 0.6)
     
 }
 .h3 {
@@ -30,15 +30,24 @@ header {
     margin-top: 20px;
     margin-bottom: 20px
 }
+.todayCity {
+    font-family: 'Sono', sans-serif;
+    font-size: 40px;
+    color: #7892a1;
+    padding-top: 20px;
+    
+}
 #today.content-exists {
-    margin-top: 40px;
+    margin-top: 0px;
     padding-top: 30px;
+    padding-bottom: 30px;
     color: white;
+    font-size: 20px;
     
     box-shadow: 0 15px 35px rgba(0,0, 0, 0, 0.6);
     border-radius: 20px;
     backdrop-filter: blur(5px);
-    background: rgba(255,255,255,0.07)!important;
+    background: rgba(255,255,255,0.09);
     border: 1px solid rgba(255,255,255,0.25);
     border-top: 1px solid rgba(255,255,255,0.5);
     border-left: 1px solid rgba(255,255,255,0.5);
@@ -104,13 +113,13 @@ input[type=text] {
 }
 
   
-/* card styling */
+/*card styling */
 .card-img-top {
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 100px;
+    max-height: 100px;
 }
 .card {
-    background: rgba(255,255,255,0.07)!important;
+    background: rgba(255,255,255,0.09)!important;
     margin-top: 20px!important;
     margin-bottom: 20px!important;
     border-radius: 20px!important;
@@ -118,5 +127,5 @@ input[type=text] {
     border: 1px solid rgba(255,255,255,0.25)!important;
     border-top: 1px solid rgba(255,255,255,0.5)!important;
     border-left: 1px solid rgba(255,255,255,0.5)!important;
-    backdrop-filter: blur(3px)!important;
+    backdrop-filter: blur(6px);
 }

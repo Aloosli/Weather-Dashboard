@@ -77,12 +77,12 @@ function getCoordinates(city) {
         
 
         // append the city name and date to the #today div
-        $("#today").append("<h2>" + cityName + " (" + currentDay + ")</h2>");
+        $("#today").append("<h2 class=todayCity>" + cityName + " (" + currentDay + ")</h2>");
         // append the icon to the #today div
         $("#today").append(
-          "<img src='https://openweathermap.org/img/w/" +
+          "<img src='https://openweathermap.org/img/wn/" +
             response.list[0].weather[0].icon +
-            ".png'>"
+            "@4x.png'>"
         );
         // append the temperature to the #today div in celcius
         $("#today").append(
@@ -112,9 +112,9 @@ function getCoordinates(city) {
           let forecastCard = $("<div>");
           forecastCard.addClass("card mx-auto text-white m-2 text-center");
           forecastCard.html(`
-                <img class="card-img-top mx-auto" src="https://openweathermap.org/img/w/${
+                <img class="card-img-top mx-auto" src="https://openweathermap.org/img/wn/${
                   response.list[i].weather[0].icon
-                }.png">
+                }@2x.png">
                 <div class="card-body ">
                     <h5 class="card-title">${moment()
                       .add(i + 1, "days")
