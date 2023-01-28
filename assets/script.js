@@ -23,7 +23,7 @@
 
 // Global variables
 apiKey = "9ae8216bea4ff853455ec69cc8c92110";
-var city = "";
+var cityName = "";
 var cityHistory = [];
 var currentDay = moment().format("Do MMM YYYY");
 
@@ -37,17 +37,16 @@ function getCoordinates(city) {
   $.ajax({
     url: geolocationURL,
     method: "GET",
-
-   
   }).then(function (response) {
-     if (response.length !== 0) {
-    var lat = response[0].lat;
-    var lon = response[0].lon;
-    getWeather(lat, lon);
-    console.log(response);
-     } else {
+    if (response.length !== 0) {
+      cityName = response[0].name;
+      var lat = response[0].lat;
+      var lon = response[0].lon;
+      getWeather(lat, lon);
+      console.log(response);
+    } else {
       alert("Please enter a valid city name");
-     }
+    }
   });
 
   // Function to retrieve current and future weather conditions for the entered city using an API
@@ -64,8 +63,8 @@ function getCoordinates(city) {
     $.ajax({
       url: queryURL,
       method: "GET",
-       // error callback function
-    error: function (jqXHR, textStatus, errorThrown) {
+      // error callback function
+      error: function (jqXHR, textStatus, errorThrown) {
         // show error message to user
         alert("Error: " + textStatus + " " + errorThrown);
       },
@@ -80,7 +79,7 @@ function getCoordinates(city) {
         // clear the #today div
         $("#today").empty();
         // append the city name and date to the #today div
-        $("#today").append("<h2>" + city + " (" + currentDay + ")</h2>");
+        $("#today").append("<h2>" + cityName + " (" + currentDay + ")</h2>");
         // append the icon to the #today div
         $("#today").append(
           "<img src='https://openweathermap.org/img/w/" +
