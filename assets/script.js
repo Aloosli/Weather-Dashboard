@@ -26,7 +26,22 @@ apiKey = "9ae8216bea4ff853455ec69cc8c92110";
 var cityName = "";
 var cityHistory = [];
 var currentDay = moment().format("Do MMM YYYY");
-
+// Function to create a button in the search area for city history
+function createCityButtons(city) {
+  // check if new city is already in the cityHistory array
+  if (cityHistory.indexOf(city) === -1) {
+    // if not, add it to the array
+    cityHistory.push(city);
+    // create a button for the new city
+    var cityButton = $("<button>");
+    // add a class to the button
+    cityButton.addClass("city-button ");
+    // add the city name to the button
+    cityButton.text(city);
+    // append the button to the city-history div
+    $(".city-buttons").append(cityButton);
+  }
+}
 // get coordinates
 function getCoordinates(city) {
   var geolocationURL =
@@ -43,6 +58,8 @@ function getCoordinates(city) {
       var lat = response[0].lat;
       var lon = response[0].lon;
       getWeather(lat, lon);
+      // call function createCityButtons(city)
+      createCityButtons(city);
       console.log(response);
     } else {
       alert("Please enter a valid city name");
@@ -130,22 +147,6 @@ function getCoordinates(city) {
   }
 }
 
-// Function to create a button in the search area for city history
-function createCityButtons(city) {
-  // check if new city is already in the cityHistory array
-  if (cityHistory.indexOf(city) === -1) {
-    // if not, add it to the array
-    cityHistory.push(city);
-    // create a button for the new city
-    var cityButton = $("<button>");
-    // add a class to the button
-    cityButton.addClass("city-button ");
-    // add the city name to the button
-    cityButton.text(city);
-    // append the button to the city-history div
-    $(".city-buttons").append(cityButton);
-  }
-}
 // function to capitalize the first letter of city names
 function capitalizeWords(inputString) {
   // Convert the input string to lowercase and split it into an array of words
@@ -171,8 +172,6 @@ $("#search-button").on("click", function (event) {
   // Retrieve current and future weather conditions for the entered city using an API
   getCoordinates(city);
 
-  // call function createCityButtons(city)
-  createCityButtons(city);
   // Save the city name in the browser's local storage
   localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
 });
