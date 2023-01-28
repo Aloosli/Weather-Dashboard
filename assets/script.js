@@ -73,6 +73,9 @@ function getCoordinates(city) {
         // Transfer content to HTML
         // clear the #today div
         $("#today").empty();
+        
+        
+
         // append the city name and date to the #today div
         $("#today").append("<h2>" + cityName + " (" + currentDay + ")</h2>");
         // append the icon to the #today div
@@ -96,6 +99,9 @@ function getCoordinates(city) {
         $("#today").append(
           "<p>Wind Speed: " + response.list[0].wind.speed + " MPH</p>"
         );
+        // add a class to the #today div for styling
+        $("#today").addClass("content-exists");
+
 
         // Create 5 forecast cards and append them to <section id="forecast-container"
         //------------------------------------------------------------

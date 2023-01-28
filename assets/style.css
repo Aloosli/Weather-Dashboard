@@ -1,32 +1,59 @@
 *, *:before, *:after {
     box-sizing: border-box;
   }
+body {
+    
+    background-color: #f5f5f5;
+    background-image: url("./bg.jpg");
+    
+    
+}
 header {
-    background: linear-gradient(to right, #f9844a, #90be6d);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 15px 35px rgba(0,0, 0, 0, 0.05);
+    
+    backdrop-filter: blur(10px);
+    
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    
     
 }
 .weather-h1 {
     font-family: 'Fugaz One', cursive;
-    font-size: 80px;
+    font-size: 65px;
+    
+    color: rgba(70, 99, 101, 0.4)
+    
 }
 .h3 {
     
     margin-top: 20px;
     margin-bottom: 20px
 }
-#today {
+#today.content-exists {
     margin-top: 40px;
+    padding-top: 30px;
+    color: white;
+    
+    box-shadow: 0 15px 35px rgba(0,0, 0, 0, 0.6);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    background: rgba(255,255,255,0.07)!important;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-left: 1px solid rgba(255,255,255,0.5);
+     
 }
 
 /* search bar styling */
 input[type=text] {
-    background-color: #fff;
-    border: 5px dotted #f9844a;
+    background-color: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(3px);
     margin-top: 20px;
     font-size: 30px;
     height: 60px;
-    color: #90be6d;
+    color: #fff;
     padding-left: 80px;
     width: 100%;
     border-radius: 100px;
@@ -34,12 +61,12 @@ input[type=text] {
   }
 /* search button styling */
 .searchButton {
-    background: linear-gradient(135deg, #6FB9BE 30%, #BE6F91 60%);
+    background: #F8997E;
     border: none;
     height: 40px;
     margin-top: 30px;
     
-    background-color: #90be6d;
+    
     color: white;
     width: 100%;
     border-radius: 100px;
@@ -58,7 +85,7 @@ input[type=text] {
 }
 .city-button {
     border: none;
-    background-color: #90be6d;
+    background-color: #7892a1;
     color: white;
     text-decoration: none;
     margin-top: 20px;
@@ -83,6 +110,13 @@ input[type=text] {
     max-height: 80px;
 }
 .card {
-    background-color: #90be6d!important;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background: rgba(255,255,255,0.07)!important;
+    margin-top: 20px!important;
+    margin-bottom: 20px!important;
+    border-radius: 20px!important;
+    box-shadow: 0 15px 35px rgba(0,0, 0, 0, 0.6)!important;
+    border: 1px solid rgba(255,255,255,0.25)!important;
+    border-top: 1px solid rgba(255,255,255,0.5)!important;
+    border-left: 1px solid rgba(255,255,255,0.5)!important;
+    backdrop-filter: blur(3px)!important;
 }
