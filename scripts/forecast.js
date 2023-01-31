@@ -7,7 +7,10 @@ const getCity = async (city) => {
   const query = `?q=${city}&limit=1&type=like&appid=${key}`;
   const response = await fetch(base + query);
   const data = await response.json();
-
+  // check if the city is found
+  if (!data || !data[0] || !data[0].lat) {
+    throw new Error("City not found");
+  }
   return { lat: data[0].lat, lon: data[0].lon };
 };
 
@@ -18,7 +21,6 @@ const getWeather = async (lat, lon) => {
   const query = `${lat}&lon=${lon}&appid=${key}`;
   const response = await fetch(base + query);
   const data = await response.json();
-  console.log(data);
 
   return data;
 };
@@ -29,7 +31,6 @@ const getForecast = async (lat, lon) => {
   const query = `${lat}&lon=${lon}&appid=${key}`;
   const response = await fetch(base + query);
   const data = await response.json();
-  console.log(data);
 
   return data;
 };

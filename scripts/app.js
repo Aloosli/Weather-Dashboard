@@ -5,7 +5,7 @@ let cityButtonHistory = [];
 window.onload = function () {
   cityButtonHistory =
     JSON.parse(localStorage.getItem("cityButtonHistory")) || [];
-  cityButtonHistory = Array.from(new Set(cityButtonHistory));  
+  cityButtonHistory = Array.from(new Set(cityButtonHistory));
   cityButtonHistory.forEach(function (city) {
     createCityButtons(city);
   });
@@ -60,7 +60,6 @@ const updateUI = (data) => {
 };
 // Function to update forecast cards
 const updateForecast = (forecast) => {
-  console.log(forecastContainer);
   // Clear forecast container
   forecastContainer.innerHTML = "";
   // Loop over 5 days
@@ -95,23 +94,28 @@ const updateForecast = (forecast) => {
     forecastContainer.appendChild(forecastCard);
   }
 };
-// Function to update city weather
+
+// Function to update city weather and check if city exists
 const updateCity = async (city) => {
-  // Get city data
-  const cityDets = await getCity(city);
-  console.log("City details:", cityDets);
-  // Get weather data
-  const weather = await getWeather(cityDets.lat, cityDets.lon);
-  console.log("Weather:", weather);
-  // Get forecast data
-  const forecast = await getForecast(cityDets.lat, cityDets.lon);
-  console.log("Forecast:", forecast);
-  // Return data
-  return {
-    cityDets,
-    weather,
-    forecast,
-  };
+  try {
+    // Get city data
+    const cityDets = await getCity(city);
+
+    // Get weather data
+    const weather = await getWeather(cityDets.lat, cityDets.lon);
+
+    // Get forecast data
+    const forecast = await getForecast(cityDets.lat, cityDets.lon);
+
+    // Return data
+    return {
+      cityDets,
+      weather,
+      forecast,
+    };
+  } catch (error) {
+    alert("City not found. Please try again.");
+  }
 };
 
 // Event listener for form submit
@@ -122,16 +126,26 @@ cityForm.addEventListener("submit", (e) => {
   const city = cityForm.city.value.trim();
   // Reset form
   cityForm.reset();
-  // Update UI with new city
-  updateCity(city)
-    .then((data) => updateUI(data))
+  // Check if input is empty
+  if (city === "") {
+    alert("Please enter a city name");
+  } else {
+    // Update UI with new city
+    updateCity(city)
+      // Check if city exists
+      .then((data) => {
+        if (data.cityDets) {
+          updateUI(data);
+          // check if the city is already in the cityButtonHistory array
+          if (cityButtonHistory.indexOf(city) === -1) {
+            // create a button for the new city
+            createCityButtons(city);
+          }
+        }
+      })
 
-    // Catch error
-    .catch((err) => console.log(err));
-  // check if the city is already in the cityButtonHistory array
-  if (cityButtonHistory.indexOf(city) === -1) {
-    // create a button for the new city
-    createCityButtons(city);
+      // Catch error
+      .catch((err) => console.log(err));
   }
 });
 
@@ -144,4 +158,3 @@ $(".city-buttons").on("click", ".city-button", function () {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
-
