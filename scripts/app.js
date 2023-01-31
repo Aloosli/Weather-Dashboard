@@ -1,9 +1,11 @@
 // Description: This file contains the main JavaScript code for the Weather Dashboard app.
 let cityButtonHistory = [];
 
-// Get the city history from local storage
+// Get the city history from local storage and check if city is already in the array
 window.onload = function () {
-  cityButtonHistory = JSON.parse(localStorage.getItem("cityButtonHistory")) || [];
+  cityButtonHistory =
+    JSON.parse(localStorage.getItem("cityButtonHistory")) || [];
+  cityButtonHistory = Array.from(new Set(cityButtonHistory));  
   cityButtonHistory.forEach(function (city) {
     createCityButtons(city);
   });
@@ -18,24 +20,19 @@ const forecastContainer = document.querySelector(".forecast-container");
 // // Get current day in desired format
 const currentDay = moment().format("Do MMM YYYY");
 
-
 // Function to create a button in the search area for city history
 function createCityButtons(city) {
-  // check if new city is already in the cityHistory array
-  if (cityButtonHistory.indexOf(city) === -1) {
-    // if not, add it to the array
-    cityButtonHistory.push(city);
-    // create a button for the new city
-    let cityButton = $("<button>");
-    // add a class to the button
-    cityButton.addClass("city-button ");
-    // add the city name to the button
-    cityButton.text(city);
-    // append the button to the city-history div
-    $(".city-buttons").append(cityButton);
-    // save the cityHistory array to local storage
-    localStorage.setItem("cityButtonHistory", JSON.stringify(cityButtonHistory));
-  }
+  cityButtonHistory.push(city);
+  // create a button for the new city
+  let cityButton = $("<button>");
+  // add a class to the button
+  cityButton.addClass("city-button ");
+  // add the city name to the button
+  cityButton.text(city);
+  // append the button to the city-history div
+  $(".city-buttons").append(cityButton);
+  // save the cityHistory array to local storage
+  localStorage.setItem("cityButtonHistory", JSON.stringify(cityButtonHistory));
 }
 
 // Function to update UI with weather data
@@ -131,8 +128,11 @@ cityForm.addEventListener("submit", (e) => {
 
     // Catch error
     .catch((err) => console.log(err));
-  // call createCityButtons function
-  createCityButtons(city);
+  // check if the city is already in the cityButtonHistory array
+  if (cityButtonHistory.indexOf(city) === -1) {
+    // create a button for the new city
+    createCityButtons(city);
+  }
 });
 
 // event listener for city buttons
@@ -144,4 +144,4 @@ $(".city-buttons").on("click", ".city-button", function () {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
-localStorage.clear();
+
