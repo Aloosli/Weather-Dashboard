@@ -144,3 +144,4 @@ $(".city-buttons").on("click", ".city-button", function () {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
+localStorage.clear();
