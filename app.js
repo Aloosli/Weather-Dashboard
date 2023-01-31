@@ -1,4 +1,13 @@
 // Description: This file contains the main JavaScript code for the Weather Dashboard app.
+let cityButtonHistory = [];
+
+// Get the city history from local storage
+window.onload = function () {
+  cityButtonHistory = JSON.parse(localStorage.getItem("cityButtonHistory")) || [];
+  cityButtonHistory.forEach(function (city) {
+    createCityButtons(city);
+  });
+};
 
 // Select form element
 const cityForm = document.querySelector("form");
@@ -8,15 +17,14 @@ const todayWeather = document.querySelector(".todayWeather");
 const forecastContainer = document.querySelector(".forecast-container");
 // // Get current day in desired format
 const currentDay = moment().format("Do MMM YYYY");
-//Array to store city history
-let cityHistory = [];
+
 
 // Function to create a button in the search area for city history
 function createCityButtons(city) {
   // check if new city is already in the cityHistory array
-  if (cityHistory.indexOf(city) === -1) {
+  if (cityButtonHistory.indexOf(city) === -1) {
     // if not, add it to the array
-    cityHistory.push(city);
+    cityButtonHistory.push(city);
     // create a button for the new city
     let cityButton = $("<button>");
     // add a class to the button
@@ -26,7 +34,7 @@ function createCityButtons(city) {
     // append the button to the city-history div
     $(".city-buttons").append(cityButton);
     // save the cityHistory array to local storage
-    localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
+    localStorage.setItem("cityButtonHistory", JSON.stringify(cityButtonHistory));
   }
 }
 
