@@ -51,11 +51,12 @@ const updateUI = (data) => {
     }@4x.png" alt="weather icon" />
     <div class="">${weather.weather[0].description}</div>
     <div class="display-4 my-1">
-        <span>${tempCelsius.toFixed(2)} &#8451;</span>
+        <span>${tempCelsius.toFixed(0)} &#8451;</span>
     </div>
     <p>Humidity: ${weather.main.humidity}%</p>
     
-    <p>Wind: ${weather.wind.speed} m/s</p>
+    <p>Wind: ${(weather.wind.speed * 2.237).toFixed(1)} mph</p>
+
     `;
 };
 // Function to update forecast cards
@@ -87,7 +88,7 @@ const updateForecast = (forecast) => {
             forecast.list[i].main.temp - 273.15
           )} °C</p>
           <p class="card-text">Humidity: ${forecast.list[i].main.humidity}%</p>
-          <p class="card-text">Wind: ${forecast.list[i].wind.speed} m/s</p>
+          <p class="card-text">Wind: ${(forecast.list[i].wind.speed * 2.237).toFixed(1)} mph</p>
         </div>
       `;
     // Append forecast card to forecast container
@@ -145,7 +146,7 @@ cityForm.addEventListener("submit", (e) => {
       })
 
       // Catch error
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err,"invalid city input"));
   }
 });
 
@@ -158,3 +159,4 @@ $(".city-buttons").on("click", ".city-button", function () {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
+//localStorage.clear()
