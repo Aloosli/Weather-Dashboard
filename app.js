@@ -30,12 +30,6 @@ function createCityButtons(city) {
   }
 }
 
-
-
-  
- 
-  
-
 // Function to update UI with weather data
 const updateUI = (data) => {
   // Destructure data
@@ -56,7 +50,7 @@ const updateUI = (data) => {
     </div>
     <p>Humidity: ${weather.main.humidity}%</p>
     
-    <p>Wind: ${weather.wind.speed} m/ph</p>
+    <p>Wind: ${weather.wind.speed} m/s</p>
     `;
 };
 // Function to update forecast cards
@@ -89,6 +83,7 @@ const updateForecast = (forecast) => {
             forecast.list[i].main.temp - 273.15
           )} °C</p>
           <p class="card-text">Humidity: ${forecast.list[i].main.humidity}%</p>
+          <p class="card-text">Wind: ${forecast.list[i].wind.speed} m/s</p>
         </div>
       `;
     // Append forecast card to forecast container
@@ -131,8 +126,6 @@ cityForm.addEventListener("submit", (e) => {
   // call createCityButtons function
   createCityButtons(city);
 });
-
-
 
 // event listener for city buttons
 $(".city-buttons").on("click", ".city-button", function () {
