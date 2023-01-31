@@ -44,6 +44,11 @@ const updateUI = (data) => {
   // Update forecast
   updateForecast(data.forecast);
   // Populate today weather element with updated data
+  
+  // remove d-none class if present
+    if (todayWeather.classList.contains("d-none")) {
+        todayWeather.classList.remove("d-none");
+    }
   todayWeather.innerHTML = `
     <h5 class="my-1 todayCity">${weather.name} ${currentDay}</h5>
     <img class="todayIcon" src="https://openweathermap.org/img/wn/${
