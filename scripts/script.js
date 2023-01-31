@@ -185,4 +185,3 @@ function clearSearch(){
 }
 
 $(document).ready(clearSearch);
-

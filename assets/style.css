@@ -20,24 +20,23 @@ header {
 }
 .weather-h1 {
     font-family: 'Fugaz One', cursive;
-    font-size: 65px;
+    font-size: 60px;
     
     color: rgba(70, 99, 101, 0.6)
     
 }
-.h3 {
-    
-    margin-top: 20px;
-    margin-bottom: 20px
-}
+
 .todayCity {
     font-family: 'Sono', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     color: #7892a1;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     
 }
-#today.content-exists {
+.todayIcon {
+    max-height: 170px;
+}
+.todayWeather {
     margin-top: 0px;
     padding-top: 30px;
     padding-bottom: 30px;
